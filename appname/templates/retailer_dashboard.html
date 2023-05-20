@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p>Your manufacturer: {{ manufacturer.user}}</p>
+  <div id="products-list">
+    <p class="h3 mt-3">Your Products:</p>
+    <div class="text-end">
+      <a href="{% url 'verify_product' %}"><button class="btn btn-primary">verify product</button></a>
+    </div>
+    <ul class="list-group p-2 gap-2">
+      {% for product in products %}
+      <li class="list-group-item text-break">
+        <div class="row">
+          <div class="col-sm-8">
+            <span class="h5">{{ product.name }}</span><br />
+            <span class="text-muted"
+              >Manufacturer: {{ product.manufacturer.manufacturer_ID }}</span
+            ><br />
+            <span class="text-muted"
+              >Retailer: {{ product.retailer.retailer_ID }}</span
+            ><br />
+            <span class="text-muted">Identifier: {{ product.identifier }}</span><br/>
+            <span class="text-muted">verified: {{ product.verified }}</span>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

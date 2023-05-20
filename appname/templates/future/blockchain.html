@@ -1,0 +1,6 @@
+<p>Your blocks:</p>
+  <ul>
+    {% for block in blocks %}
+      <li>{{block.previous_block}} -- {{block.current_block}} -- {{block.verified}}</li>
+    {% endfor %}
+  </ul>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mb-3">
+  <a href="{% url 'manufacturer_dashboard' %}">
+    <button type="button" class="btn btn-outline-dark"> Back</button>
+  </a>
+</div>
+<form method="POST" id="form" class="container">
+  <h1 class="h2">Add Product</h1>
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea name="description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="retailer" class="form-label">Retailer:</label>
+        <select name="retailer" class="form-select">
+            <option selected>Open this select menu</option>
+            {% for retailer in retailers %}
+            <option value={{ retailer.retailer_ID }}>{{ retailer.retailer_ID }}</option>
+            {% endfor %}
+          </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
+{% endblock %}

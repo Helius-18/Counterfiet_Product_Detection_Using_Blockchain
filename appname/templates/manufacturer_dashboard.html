@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<div class="btn-group" role="group">
+  <button id="products-btn" type="button" class="btn btn-outline-dark active">Products</button>
+  <button id="retailers-btn" type="button" class="btn btn-outline-dark">Retailers</button>
+</div>
+
+
+<div id="retailers-list" style="display: none">
+  <p class="h3 mt-3">Your retailers:</p>
+  <div class="text-end">
+    <a href="{% url 'retailer_signup' %}"><button class="btn btn-primary">create retailer</button></a>
+  </div>
+  <ul class="list-group p-2 gap-2">
+    {% for retailer in retailers %}
+    <li class="list-group-item">{{ retailer.user }} <br><span class="text-muted"
+      >ID: {{ retailer.retailer.retailer_ID }}</span
+    ></li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+<div id="products-list">
+  <p class="h3 mt-3">Your Products:</p>
+  <div class="text-end">
+    <a href="{% url 'newproduct' %}"><button class="btn btn-primary">new product</button></a>
+  </div>
+  <ul class="list-group p-2 gap-2">
+    {% for product in products %}
+    <li class="list-group-item text-break">
+      <div class="row">
+        <div class="col-sm-8">
+          <span class="h5">{{ product.name }}</span><br />
+          <span class="text-muted"
+            >Manufacturer: {{ product.manufacturer.manufacturer_ID }}</span
+          ><br />
+          <span class="text-muted"
+            >Retailer: {{ product.retailer.retailer_ID }}</span
+          ><br />
+          <span class="text-muted">Identifier: {{ product.identifier }}</span><br/>
+          <span class="text-muted">verified: {{ product.verified }}</span>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

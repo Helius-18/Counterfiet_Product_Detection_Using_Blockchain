@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="btn-group" role="group">
+  <a href="{% url 'manufacturer_dashboard' %}"><button type="button" class="btn btn-outline-dark">Back</button></a>
+</div>
+<form method="post" class="container">
+  <h2 class="mt-5 mb-4">Signup as a Retailer</h2>
+{% if error_message %}
+  <p class="error">{{ error_message }}</p>
+{% endif %}
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="retailer_ID">Retailer ID:</label>
+    <input type="text" id="retailer_ID" name="retailer_ID" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary mt-2">Signup</button>
+</form>
+{% endblock %}

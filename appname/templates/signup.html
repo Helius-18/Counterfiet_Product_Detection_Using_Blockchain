@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="btn-group" role="group">
+  <button id="manufacturers-btn" type="button" class="btn btn-outline-dark active">Manufacturers</button>
+  <button id="manufacturer-btn" type="button" class="btn btn-outline-dark">Create Manufacturer</button>
+</div>
+<div id="create-manufacturer" style="display: none">
+  <div class="container mt-3">
+    <h2>Signup as a Manufacturer</h2>
+    {% if error_message %}
+      <p class="alert alert-danger">{{ error_message }}</p>
+    {% endif %}
+    <form method="post" class="d-flex gap-2 flex-column">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="manufacturer_ID">Manufacturer ID:</label>
+        <input type="text" class="form-control" id="manufacturer_ID" name="manufacturer_ID" required>
+      </div>
+      <button type="submit" class="btn btn-primary col-1">Signup</button>
+    </form>
+  </div>
+</div>
+<div id="manufacturers">
+  <p class="h3 mt-3">Manufacturers:</p>
+  <ul class="list-group p-2 gap-2">
+    {% for manufacturer in manufacturers %}
+    <li class="list-group-item">{{ manufacturer.user }} <br><span class="text-muted"
+      >ID: {{ manufacturer.manufacturer.manufacturer_ID }}</span
+    ></li>
+    {% endfor %}
+  </ul>
+</div>
+<script>
+  const manufacturerBtn = document.getElementById("manufacturer-btn");
+    const manufacturersBtn = document.getElementById("manufacturers-btn");
+    const createmanufacturer = document.getElementById("create-manufacturer");
+    const manufacturers = document.getElementById("manufacturers");
+  
+    manufacturerBtn.addEventListener("click", () => {
+      createmanufacturer.style.display = "block";
+      manufacturers.style.display = "none";
+      manufacturerBtn.classList.add("active");
+      manufacturersBtn.classList.remove("active");
+    });
+  
+    manufacturersBtn.addEventListener("click", () => {
+      createmanufacturer.style.display = "none";
+      manufacturers.style.display = "block";
+      manufacturerBtn.classList.remove("active");
+      manufacturersBtn.classList.add("active");
+    });
+</script>
+{% endblock %}
