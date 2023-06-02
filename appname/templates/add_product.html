@@ -20,7 +20,7 @@
     <div class="mb-3">
         <label for="retailer" class="form-label">Retailer:</label>
         <select name="retailer" class="form-select" required>
-            <option selected>Open this select menu</option>
+            <option value="" selected disabled>Open this select menu</option>
             {% for retailer in retailers %}
             <option value={{ retailer.retailer_ID }}>{{ retailer.retailer_ID }}</option>
             {% endfor %}
