@@ -15,11 +15,11 @@
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description:</label>
-        <textarea name="description" class="form-control"></textarea>
+        <textarea name="description" class="form-control" required></textarea>
     </div>
     <div class="mb-3">
         <label for="retailer" class="form-label">Retailer:</label>
-        <select name="retailer" class="form-select">
+        <select name="retailer" class="form-select" required>
             <option selected>Open this select menu</option>
             {% for retailer in retailers %}
             <option value={{ retailer.retailer_ID }}>{{ retailer.retailer_ID }}</option>
